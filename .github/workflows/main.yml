@@ -72,7 +72,7 @@ jobs: # FUCK MY LIFE BROOOOO
                 haxelib run hxpkg install
             - name: Compile build
               run: |
-                haxelib run rebuild lime linux -64 -release -clean
+                haxelib run lime rebuild linux -64 -release -clean
                 haxelib run lime build Project.xml linux -D ${{inputs.buildFlags}}
             - name: Publish artifact
               uses: actions/upload-artifact@v7.0.0
