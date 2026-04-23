@@ -39,10 +39,8 @@ jobs: # FUCK MY LIFE BROOOOO
                 haxelib install hxcpp > nul --quiet
                 haxelib install hxpkg --quiet
                 haxelib run hxpkg install
-                haxelib remove lime
-                haxelib git lime https://github.com/FunkinCrew/lime 6421de16b9dfa4fb55c19f12db65d392a57585c8
-                haxelib run lime rebuild lime windows
                 haxelib run lime rebuild hxcpp windows -clean
+                haxelib run lime rebuild lime windows
                 haxelib run lime rebuild cpp
             - name: Compile build
               run: haxelib run lime build windows -D ${{inputs.buildFlags}}
@@ -74,6 +72,7 @@ jobs: # FUCK MY LIFE BROOOOO
                 haxelib install hxpkg --quiet
                 haxelib run hxpkg install
             - name: Compile build
+                   haxelib run lime rebuild lime linux
               run: haxelib run lime build Project.xml linux -D ${{inputs.buildFlags}}
             - name: Publish artifact
               uses: actions/upload-artifact@v7.0.0
