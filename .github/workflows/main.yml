@@ -39,7 +39,6 @@ jobs: # FUCK MY LIFE BROOOOO
                 haxelib install hxcpp > nul --quiet
                 haxelib install hxpkg --quiet
                 haxelib run hxpkg install
-                haxelib run lime rebuild hxcpp windows -clean
                 haxelib run lime rebuild lime windows
                 haxelib run lime rebuild cpp
             - name: Compile build
@@ -73,7 +72,7 @@ jobs: # FUCK MY LIFE BROOOOO
                 haxelib run hxpkg install
             - name: Compile build
               run: |
-                haxelib lime rebuild lime linux -64 -release -clean
+                haxelib run rebuild lime linux -64 -release -clean
                 haxelib run lime build Project.xml linux -D ${{inputs.buildFlags}}
             - name: Publish artifact
               uses: actions/upload-artifact@v7.0.0
