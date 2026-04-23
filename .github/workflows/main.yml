@@ -1,12 +1,15 @@
 # FUCK MY LIFE BROOOOOOOOO.
+# remove main when this is fixed
 name: Binaries
 
 on: # Workflow triggers on both when a commit is pushed, or when a pull request is made.
     push:
         branches: 
+            - main
             - dev
     pull_request:
         branches:
+            - main
             - dev
     
     workflow_dispatch: # Run workflow manually from the actions tab.
@@ -37,6 +40,8 @@ jobs: # FUCK MY LIFE BROOOOO
                 haxelib install hxpkg --quiet
                 haxelib run hxpkg install
                 haxelib run lime rebuild hxcpp windows -clean
+                haxelib remove lime
+                haxelib install lime https://github.com/FunkinCrew/lime 6421de16b9dfa4fb55c19f12db65d392a57585c8
                 haxelib run lime rebuild lime windows -clean
                 haxelib run lime rebuild cpp
             - name: Compile build
@@ -68,6 +73,8 @@ jobs: # FUCK MY LIFE BROOOOO
                 haxelib install hxcpp > /dev/null --quiet
                 haxelib install hxpkg --quiet
                 haxelib run hxpkg install
+                haxelib run lime rebuild hxcpp windows -clean
+                haxelib run lime rebuild lime linux -clean
             - name: Compile build
               run: haxelib run lime build Project.xml linux -D ${{inputs.buildFlags}}
             - name: Publish artifact
